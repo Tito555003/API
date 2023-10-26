@@ -59,3 +59,20 @@ app.post('/api/articulos',(req,res)=>{
         }
     })
 })
+
+app.put('/api/articulos/:id',(req,res)=>{
+    let id = req.params.id;
+    let data = {
+        descripción:req.body.descripción,
+        precio:req.body.precio,
+        stock:req.body.stock
+    };
+    let sql = "UPDATE articulos SET ? WHERE id = ?";
+    conexion.query(sql,[data, id], (error, results) => {
+        if(error) {
+            throw error;
+        } else {
+            res.send("Registro actualizado con éxito");
+        }
+    });
+});
