@@ -76,3 +76,15 @@ app.put('/api/articulos/:id',(req,res)=>{
         }
     });
 });
+
+app.delete('/api/articulos/:id',(req,res)=>{
+    let id = req.params.id;
+    let sql = 'DELETE FROM articulos WHERE id = ?';
+    conexion.query(sql, [id], (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            res.send("Registro eliminado con exito");
+        }
+    });
+});
